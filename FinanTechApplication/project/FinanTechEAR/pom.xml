@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- Basic Properties -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.finantech</groupId>
+    <artifactId>FinanTechEAR</artifactId>
+    <version>1.0</version>
+    <name>FinanTechEAR-ear</name>
+	
+   
+	
+    <!-- Reference the parent -->
+    <parent>
+        <artifactId>project</artifactId>
+        <groupId>com.finantech</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <!-- The packaging value of any EAR module should be "ear" -->
+    <packaging>ear</packaging>
+
+    <!--
+        The dependencies for EAR module should include all thoese sub-modules
+        that are needed to be packaged into the ear file like the below...
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>com.finantech.ejb</groupId>
+            <artifactId>FinanTechEJB</artifactId>
+            <version>1.0</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.finantech.web</groupId>
+            <artifactId>FinanTechWebApp</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+      
+        <dependency>
+            <groupId>com.finantech.model</groupId>
+            <artifactId>FinanTechModelInteractor</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+		 <dependency>
+           <groupId>com.finantech.model.mongo</groupId>
+			<artifactId>FinanTechMongoModel</artifactId>
+			<version>1.0</version>
+            <type>jar</type>
+        </dependency>
+		<dependency>
+           <groupId>com.finantech.view</groupId>
+			<artifactId>FinanTechViewInteractor</artifactId>
+			<version>1.0</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <!--
+                The ear plugin must include the definition for "modules",
+                for any modules that are needed to be included in the EAR file,
+                you need to specify them one by one, e.g. "ejbModule", "webModule",
+                "jarModule" and "appClientModule".
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <version>5</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <ejbModule>
+                            <groupId>com.finantech.ejb</groupId>
+							<artifactId>FinanTechEJB</artifactId>
+                        </ejbModule>
+                        <webModule>
+                             <groupId>com.finantech.web</groupId>
+							 <artifactId>FinanTechWebApp</artifactId>
+                            <context-root>/FinanTechWebApp</context-root>
+                        </webModule>
+                        <jarModule>
+                           <groupId>com.finantech.model</groupId>
+							<artifactId>FinanTechModelInteractor</artifactId>
+                        </jarModule>
+						<jarModule>
+                            <groupId>com.finantech.model.mongo</groupId>
+							<artifactId>FinanTechMongoModel</artifactId>
+                        </jarModule>
+						<jarModule>
+                             <groupId>com.finantech.view</groupId>
+							 <artifactId>FinanTechViewInteractor</artifactId>
+                        </jarModule>
+                        
+                    </modules>
+                </configuration>
+            </plugin>
+            
+           
+            
+        </plugins>
+    </build>
+    
+</project>

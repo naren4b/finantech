@@ -1,0 +1,4 @@
+com\finantech\util\EJBClientUtility.class
+com\finantech\controller\FinanTechSolutionController.class
+com\finantech\controller\ScripSelectionController.class
+com\finantech\controller\LoginController.class

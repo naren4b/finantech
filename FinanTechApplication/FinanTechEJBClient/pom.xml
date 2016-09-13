@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.finantech.ejb.client</groupId>
+	<artifactId>FinanTechEJBClient</artifactId>
+	<version>1.0</version>
+	<name>FinanTech EJB Client</name>
+
+
+	<properties>
+		<!-- Explicitly declaring the source encoding eliminates the following 
+			message: -->
+		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+			resources, i.e. build is platform dependent! -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		
+		<!-- other plugin versions -->
+		<version.compiler.plugin>2.3.1</version.compiler.plugin>
+		<version.exec.plugin>1.2.1</version.exec.plugin>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>1.6</maven.compiler.source>
+	</properties>
+
+	
+
+	<dependencies>
+
+		
+
+		<!-- We depend on the EJB remote business interfaces of this application -->
+		<dependency>
+			<groupId>com.finantech.ejb</groupId>
+			<artifactId>FinanTechEJB</artifactId>
+			<version>1.0</version>
+			<type>ejb-client</type>
+		</dependency>
+
+	
+
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Enforce Java 1.6 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Add the maven exec plugin to allow us to run a java program via maven -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${version.exec.plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>java</executable>
+					<workingDirectory>${project.build.directory}/exec-working-directory</workingDirectory>
+					<arguments>
+						<!-- automatically creates the classpath using all project dependencies, 
+							also adding the project build directory -->
+						<argument>-classpath</argument>
+						<classpath>
+						</classpath>
+						<argument>com.finantech.client.main.FinanTechEJBClient</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

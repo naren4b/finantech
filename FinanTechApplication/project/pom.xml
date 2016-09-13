@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ <!-- Basic Properties -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.finantech</groupId>
+  <artifactId>project</artifactId>
+  <version>1.0</version>
+  
+  <name>project</name>
+  <parent>
+        <artifactId>FinanTechApplication</artifactId>
+        <groupId>com.finantech</groupId>
+        <version>1.0</version>
+    </parent>
+ <!-- Packaging value for encapsulating folders are usually "pom" -->
+    <packaging>pom</packaging>
+	
+   <!-- Define the modules within the pom -->
+    <modules>
+        <module>FinanTechEJB</module>
+        <module>FinanTechModelInteractor</module>
+        <module>FinanTechViewInteractor</module>
+        <module>FinanTechMongoModel</module>
+		<module>FinanTechWebApp</module>
+		<module>FinanTechEAR</module>
+    </modules>
+</project>

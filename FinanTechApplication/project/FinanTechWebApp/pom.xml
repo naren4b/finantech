@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.finantech.web</groupId>
+	<artifactId>FinanTechWebApp</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>FinanTech Web Application </name>
+	<properties>
+		<jdk.version>1.6</jdk.version>
+		<spring.version>3.2.2.RELEASE</spring.version>
+		<jstl.version>1.2</jstl.version>
+		<servletapi.version>2.5</servletapi.version>
+
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.finantech.view</groupId>
+			<artifactId>FinanTechViewInteractor</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
+
+		<!-- We depend on the EJB remote business interfaces of this application -->
+		<dependency>
+			<groupId>com.finantech.ejb</groupId>
+			<artifactId>finantechejb</artifactId>
+			<version>1.0</version>
+			<type>ejb-client</type>
+		</dependency>
+
+
+		<!-- Spring Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- need this for @Configuration -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+					<wtpContextName>FinanTechWebApp</wtpContextName>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
